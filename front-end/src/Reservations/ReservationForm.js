@@ -31,8 +31,8 @@ const ReservationForm = (
             <input type='text' name='last_name'
             value={lastName} onChange={(e)=>setLastName(e.target.value)}></input>
 
-            <label htmlFor='phone_number'>Phone Number:</label>
-            <input type='text' name='phone_number'
+            <label htmlFor='mobile_number'>Phone Number:</label>
+            <input type='text' name='mobile_number'
             value={phoneNumber} onChange={(e)=>setPhoneNumber(e.target.value)}></input>
 
             <label htmlFor='reservation_date'>Reservation Date:</label>
@@ -44,11 +44,12 @@ const ReservationForm = (
             value={resTime} onChange={(e)=>setResTime(e.target.value)}></input>
 
             <label htmlFor='people'>Party Size:</label>
-            <input type='number' min='1' max='50' name='reservation_time'
+            <input type='number' min='1' max='50' name='people'
             value={partySize} onChange={(e)=>setPartySize(e.target.value)}></input>
         </form>
 
         <button onClick={handleSubmit}>Submit</button>
+        <button>Cancel</button>
 
         </>
     )
