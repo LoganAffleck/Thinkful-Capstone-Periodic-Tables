@@ -9,6 +9,8 @@ function list(){
 function create(reservation){
     return knex(`${table}`)
     .insert(reservation)
+    .returning('*')
+    .then((reservation) => reservation[0]);
 }
 
 module.exports = {

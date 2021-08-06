@@ -15,7 +15,7 @@ const NewReservation = () => {
     let [resTime, setResTime] = useState('');
     let [partySize, setPartySize] = useState('');
 
-    const handleSubmit = async () =>{
+    const handleSubmit = async () => {
         let reservation = {
             first_name: firstName,
             last_name: lastName,
@@ -24,7 +24,8 @@ const NewReservation = () => {
             reservation_time: resTime,
             people: partySize,
         }
-        await createReservation(reservation);
+        let data = await createReservation(reservation);
+        console.log(data)
         //And then direct user to the Dashboard...
         history.push("/dashboard")
     }
