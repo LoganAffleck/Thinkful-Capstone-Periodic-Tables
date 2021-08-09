@@ -27,17 +27,14 @@ async function validateDateAndTime(req, res, next) {
   let dateFormat = /\d\d\d\d-\d\d-\d\d/;
   let timeFormat = /\d\d:\d\d/;
   if(reservation_date.match(dateFormat) && reservation_time.match(timeFormat) && (typeof people) === 'number'){
-    console.log("That worked!")
     return next()
-  }
-
+  };
   return next({
     status: 400,
     message: "reservation_date, reservation_time, people."
-})
+});
 
-
-}
+};
 
 
 
