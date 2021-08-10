@@ -22,12 +22,12 @@ const NewReservation = () => {
             mobile_number: phoneNumber,
             reservation_date: resDate,
             reservation_time: resTime,
-            people: partySize,
+            people: Number(partySize),
         }
         let data = await createReservation(reservation);
         console.log(data)
         //And then direct user to the Dashboard...
-        history.push("/dashboard")
+        history.push(`/dashboard`)
     }
 
     return(
