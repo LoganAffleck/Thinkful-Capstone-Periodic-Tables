@@ -17,35 +17,29 @@ function Menu() {
             <span>Periodic Tables</span>
           </div>
         </Link>
-        <hr/>
-        <ul id="accordionSidebar">
+        <ul>
           <li >
             <Link to="/dashboard">
-              &nbsp;Dashboard
+              Dashboard
             </Link>
           </li>
           <li>
             <Link to="/search">
-              &nbsp;Search
+              Search
             </Link>
           </li>
           <li>
             <Link to="/reservations/new">
-              &nbsp;New Reservation
+              New Reservation
             </Link>
           </li>
           <li>
             <Link to="/tables/new">
-              &nbsp;New Table
+              New Table
             </Link>
           </li>
         </ul>
-        <div>
-          <button
-            id="sidebarToggle"
-            type="button"
-          />
-        </div>
+
       </div>
     </nav>
   );

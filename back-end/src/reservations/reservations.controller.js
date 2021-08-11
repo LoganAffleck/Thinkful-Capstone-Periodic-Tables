@@ -11,6 +11,7 @@ let timeFormat = /\d\d:\d\d/;
 async function valid_GET_query (req, res, next) {
   if(req.query.date){
     let date = req.query.date;
+    console.log("The date is ", date)
     if(date.match(dateFormat)){
       res.locals.date = date;
       return next();
@@ -76,7 +77,7 @@ async function preventPastDates(req, res, next){
   const today = DateTime.now()
   
   res.locals.dateTime = date;
-
+  
   if(date < today){
     return next({
       status: 400,
@@ -89,14 +90,14 @@ async function preventPastDates(req, res, next){
 //Prevent reservations from being created at closed times.
 async function preventClosedTimes(req, res, next){
   let {reservation_date} = res.locals.reservation;
-  let dateTime = res.locals.dateTime;
+  let {dateTime} = res.locals;
   const openingTime = DateTime.fromISO(`${reservation_date}T10:30:00`)
   const closingTime = DateTime.fromISO(`${reservation_date}T21:30:00`)
 
-  if (date > closingTime || date < openingTime){
+  if (dateTime > closingTime || dateTime < openingTime){
     return next({
       status: 400,
-      message: `The store is closed on ${date.toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY)}!`})
+      message: `The store is closed on ${dateTime.toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY)}!`})
   } else {
     return next()
   }

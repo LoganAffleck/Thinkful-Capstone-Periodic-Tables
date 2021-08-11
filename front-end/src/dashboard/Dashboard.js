@@ -27,7 +27,7 @@ function Dashboard({ date }) {
     <main>
       <h1>Dashboard</h1>
       <div>
-        <h4>Reservations for date</h4>
+        <h4>Reservations for {date}</h4>
       </div>
       <ErrorAlert error={reservationsError} />
       {JSON.stringify(reservations)}
