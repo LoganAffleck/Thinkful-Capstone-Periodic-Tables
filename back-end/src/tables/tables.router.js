@@ -10,9 +10,4 @@ router.route("/")
 .post(controller.create)
 .delete(controller.destroy)
 
-
-
-
-
-
 module.exports = router;
