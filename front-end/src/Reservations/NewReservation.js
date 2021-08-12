@@ -8,43 +8,30 @@ const NewReservation = () => {
 
     const history = useHistory();
 
-    let [firstName, setFirstName] = useState('');
-    let [lastName, setLastName] = useState('');
-    let [phoneNumber, setPhoneNumber] = useState('');
-    let [resDate, setResDate] = useState('');
-    let [resTime, setResTime] = useState('');
-    let [partySize, setPartySize] = useState('');
-
+    const [formData, setFormData] = useState({
+        first_name: "",
+        last_name: "",
+        mobile_number: "",
+        reservation_date: "",
+        reservation_time: "",
+        people: 1,
+      });
+    const [reservationError, setReservationError] = useState(null);
+    
     const handleSubmit = async () => {
-        let reservation = {
-            first_name: firstName,
-            last_name: lastName,
-            mobile_number: phoneNumber,
-            reservation_date: resDate,
-            reservation_time: resTime,
-            people: Number(partySize),
+        try{
+            await createReservation(formData);
+            history.push(`/dashboard?date=${formData.reservation_date}`)
+        } catch(error){
+            setReservationsError(error)
         }
-        let data = await createReservation(reservation);
-        console.log(data)
-        //And then direct user to the Dashboard...
-        history.push(`/dashboard`)
-    }
+    };
 
     return(
         <>
         <ReservationForm
-        firstName={firstName}
-        setFirstName={setFirstName}
-        lastName={lastName}
-        setLastName={setLastName}
-        phoneNumber={phoneNumber}
-        setPhoneNumber={setPhoneNumber}
-        resDate={resDate}
-        setResDate={setResDate}
-        resTime={resTime}
-        setResTime={setResTime}
-        partySize={partySize}
-        setPartySize={setPartySize}
+        formData={formData}
+        setFormData={setFormData}
         handleSubmit={handleSubmit}
         />
         </>
