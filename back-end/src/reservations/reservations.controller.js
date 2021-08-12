@@ -3,28 +3,11 @@ const validateSubmission = require('./utils/validateSubmission')
 const validateDateTime = require('./utils/validateDateTime')
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 
-const dateFormat = /\d\d\d\d-\d\d-\d\d/;
 
 //------MIDDLEWARE-------//
 
-//Validate the date query parameter. 
-async function valid_GET_query (req, res, next) {
-  if(req.query.date){
-    let date = req.query.date;
-    if(date.match(dateFormat)){
-      res.locals.date = date;
-      return next();
-    }
-  }
-  
-  return next({
-    status: 400,
-    message: `There is either no "DATE" query or it is not formatted correctly.`
-  }) 
-}
-
 //Validate incoming reservation: 
-async function validateRes (req, res, next) {
+async function validateReservation (req, res, next) {
   let error = [];
   if(req.body.data) {
     const reservation = req.body.data;
@@ -36,25 +19,10 @@ async function validateRes (req, res, next) {
     return next({status: 400, message: `There was no submission data.`});
 };
 
-async function reservationExists (req, res, next) {
-  const { reservation_id } = req.params;
-  const reservation = await service.read(reservation_id)
-
-  if (reservation) {
-    res.locals.reservation = reservation;
-    return next();
-  }
-  next({
-    status: 404,
-    message: `Reservation ${reservation_id} does not exist.`
-  });
-
-};
-
 function updateValidation(req, res, next) {
   const reqStatus = req.body.data.status;
   const status = res.locals.reservation.status;
-  
+
   if (
     reqStatus !== "booked" &&
     reqStatus !== "seated" &&
@@ -77,36 +45,69 @@ function updateValidation(req, res, next) {
   next();
 };
 
-//------CRUD FUNCTIONS------//
-async function list(req, res) {
-  let date = res.locals.date;
-  const data = await service.list(date);
-  res.json({ data });
-};
-
 async function create(req, res) {
-  const reservation = res.locals.reservation;
-  const data = await service.create(reservation);
-  res.status(201).json({ data });
+  const data = await service.create(req.body.data);
+  res.status(201).json({ data })
 };
 
-async function read (req, res) {
+async function list(req, res) {
+    const { date, mobile_number } = req.query;
+    if(date){
+    const data = await service.list(date);
+    res.json({ data });
+    }
+    else{
+      const data = await service.search(mobile_number)
+      res.json({ data });
+    }   
+};
+
+async function reservationExists(req, res, next) {
+
+    const {reservation_id} = req.params
+    const reservation = await service.read(reservation_id);
+
+    if (reservation) {
+        res.locals.reservation = reservation;
+        return next();
+      }; 
+    
+      return next({
+          status: 404,
+          message: `Reservation ${reservation_id} is not in the database.`,
+        });
+};
+
+async function read(req, res) {
   const data = res.locals.reservation;
-  res.json({ data });
-}
+  res.status(200).json({ data });
+};
 
 async function update(req, res) {
-  console.log(`UPDATECALLED`)
-  const reservation_id = req.params.reservation_id;
-  const status = req.body.data.status;
+  
+  const {reservation_id} = req.params;
+  const {status} = req.body.data;
 
-  const updateStatus = await service.update(reservation_id, status);
-  res.status(200).json({ data: updateStatus });
+  let updated = await service.update(reservation_id, status);
+  res.status(200).json({ data: updated });
 };
 
+async function editReservation(req, res) {
+  
+  const editedReservation = {
+    ...req.body.data,
+    reservation_id: res.locals.reservation.reservation_id,
+  };
+
+  const data = await service.editReservation(editedReservation);
+  res.status(200).json({ data: data[0] });
+};
+
+
 module.exports = {
-  list: [asyncErrorBoundary(valid_GET_query), asyncErrorBoundary(list)],
-  create: [asyncErrorBoundary(validateRes), asyncErrorBoundary(create)],
-  read: [asyncErrorBoundary(reservationExists), asyncErrorBoundary(read)],
-  update: [asyncErrorBoundary(reservationExists), updateValidation, asyncErrorBoundary(update)]
+  list: asyncErrorBoundary(list),
+  create: [validateReservation, asyncErrorBoundary(create)],
+  read: [asyncErrorBoundary(reservationExists), read],
+  update: [asyncErrorBoundary(reservationExists), updateValidation, asyncErrorBoundary(update)],
+  editReservation: [asyncErrorBoundary(reservationExists), validateReservation, asyncErrorBoundary(editReservation)]
 };

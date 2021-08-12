@@ -1,5 +1,7 @@
-const knex = require('../db/connection')
-const tableName = 'tables';
+const knex = require("../db/connection");
+const reservationsService = require("../reservations/reservations.service")
+
+const tableName = "tables";
 
 function list() {
     return knex(tableName).select("*").orderBy("table_name", "asc");
@@ -17,11 +19,9 @@ function destroy(table_id) {
         .where({ table_id })
         .del();
 }
-
 function read(table_id) {
     return knex(tableName).where({ table_id }).first();
 }
-
 function update(updatedTable) {
     return knex(tableName)
       .where({ table_id: updatedTable.table_id })
