@@ -13,6 +13,7 @@ exports.up = async function(knex) {
         table.date("reservation_date").notNullable();
         table.time("reservation_time").notNullable();
         table.integer("people").notNullable();
+        table.string("status").notNullable().defaultTo("booked");
 
     });
 };
