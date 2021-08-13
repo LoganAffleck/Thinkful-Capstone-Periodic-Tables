@@ -68,22 +68,6 @@ export async function listReservations(params, signal) {
     .then(formatReservationTime);
 }
 
-/**
- * Retrieves all existing reservation.
- * @returns {Promise<[reservation]>}
- *  a promise that resolves to a possibly empty array of reservation saved in the database.
- */
-
- export async function listReservations(params, signal) {
-  const url = new URL(`${API_BASE_URL}/reservations`);
-  Object.entries(params).forEach(([key, value]) =>
-    url.searchParams.append(key, value.toString())
-  );
-  return await fetchJson(url, { headers, signal }, [])
-    .then(formatReservationDate)
-    .then(formatReservationTime);
-}
-
 export async function listTables(signal) {
   const url = new URL(`${API_BASE_URL}/tables`);
   return await fetchJson(url, { headers, signal }, []);
@@ -95,7 +79,6 @@ export async function createReservation(reqBody, signal) {
 }
 
 export async function createTable(reqBody, signal) {
-  console.log("post table called");
   const url = new URL(`${API_BASE_URL}/tables`);
   return await fetchJson(url, { method: 'POST', headers, signal, body: JSON.stringify({data: reqBody})}, [])
 }
@@ -105,7 +88,6 @@ export async function updateTable(table_id, reservation_id, signal) {
   return await fetchJson(url,{method: "PUT", headers, body: JSON.stringify({ data: { reservation_id } }), signal},[])
 }
 export async function deleteTable(reqBody, signal) {
-  console.log("delete table called");
   const url = new URL(`${API_BASE_URL}/tables`);
   return await fetchJson(url, { method: 'DELETE', headers, signal, body: JSON.stringify({data: reqBody})}, [])
 }

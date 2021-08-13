@@ -1,4 +1,5 @@
 import React from "react";
+import logo from '../resources/pt_logo.svg';
 
 import { Link } from "react-router-dom";
 
@@ -13,32 +14,46 @@ function Menu() {
     <nav>
       <div>
         <Link to="/" >
-          <div>
+          <div className ='logoNav'>
+            <img className ='logo' src={logo}></img>
             <span>Periodic Tables</span>
           </div>
         </Link>
-        <ul>
-          <li >
+
+        <div className='options'>
+          
             <Link to="/dashboard">
+              <div className = 'navButton'>
+              <span className ='icon'>done</span>
               Dashboard
+              </div>
             </Link>
-          </li>
-          <li>
+          
+          
             <Link to="/search">
+            <div className = 'navButton'>
+            <span className ='icon'>search</span>
               Search
+            </div>
             </Link>
-          </li>
-          <li>
+          
+          
             <Link to="/reservations/new">
+            <div className = 'navButton'>
+            <span className ='icon'>person_add</span>
               New Reservation
+            </div>
             </Link>
-          </li>
-          <li>
+          
+          
             <Link to="/tables/new">
+            <div className = 'navButton'>
+            <span className ='icon'>event_seat</span>
               New Table
+            </div>
             </Link>
-          </li>
-        </ul>
+          
+        </div>
 
       </div>
     </nav>

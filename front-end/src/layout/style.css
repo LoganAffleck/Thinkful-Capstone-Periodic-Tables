@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,800;1,300;1,700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Material+Icons+Sharp&display=swap');
+
+
+* {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0,0,0,0.02);
+}
+
+a {
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    padding-bottom: 10px;
+    position: fixed;
+    top: 0px;
+
+    background-color: white;
+
+    border-bottom-style: solid;
+    border-width: 1.5px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-color: black;
+
+    box-shadow: 0px 0px 100px rgba(0,0,0,0.15);
+    
+}
+
+.icon{
+    font-family: 'Material Icons Sharp';
+    font-size: 1vw;
+    padding-right: 3px;
+}
+
+.logoNav {
+    width: 100vw;
+    display: flex;
+    padding: 10px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.logo {
+    width: 20px;
+    margin-right: 20px;
+}
+
+.options {
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.navButton{
+    color: black;
+    font-size: 1vw;
+    padding: 3px;
+    margin: 3px;
+    display: flex;
+    align-items: center;
+
+    border-style: solid;
+    border-width: 1.5px;
+    border-radius: 5px;
+    border-color: black;
+
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
+    transition-property: box-shadow;
+    transition: .3s;
+}
+
+.navButton:hover{
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+}
+
+.websiteContent{
+    margin-top: 125px;
+}

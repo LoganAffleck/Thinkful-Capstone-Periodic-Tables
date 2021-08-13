@@ -1,7 +1,12 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { today } from "../utils/date-time";
 
+
+
 const ReservationForm = ({  formData, setFormData, handleSubmit  }) => {
+
+    const history = useHistory();
 
     return(
     <>
@@ -35,12 +40,12 @@ const ReservationForm = ({  formData, setFormData, handleSubmit  }) => {
         <label htmlFor='people'>Party Size:</label>
         <input type='number' min='1' max='50' name='people'
         value={formData.people} 
-        onChange={(e)=>setFormData({...formData, reservation_time: e.target.value})}></input>
+        onChange={(e)=>setFormData({...formData, people: e.target.value})}></input>
 
     </form>
 
-    <button onClick={handleSubmit}>Submit</button>
-    <button>Cancel</button>
+    <button type= 'submit'onClick={handleSubmit}>Submit</button>
+    <button type='cancel' onClick={()=>history.goBack()}>Cancel</button>
 
     </>
     )

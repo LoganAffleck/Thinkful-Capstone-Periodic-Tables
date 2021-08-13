@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import { useHistory } from "react-router"
 import ErrorAlert from "../layout/ErrorAlert";
-import Reservation from "../reservations/Reservation"
-import Tables from "../tables/Tables"
+import Reservation from "../Reservations/Reservation"
+import Tables from "../Tables/Tables"
 import { today, previous, next } from "../utils/date-time";
 import {listReservations, listTables} from "../utils/api"
 import useQuery from "../utils/useQuery"
