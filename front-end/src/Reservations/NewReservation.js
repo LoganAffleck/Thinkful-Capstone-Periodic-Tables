@@ -41,10 +41,13 @@ export default function NewReservation ({date}) {
                     setReservationsError(error)});
   };
     return (
-        <div>
+        <div className="main">
+
             <h1>New Reservation:</h1>
+
             <ErrorAlert error={reservationsError} />
-            <form onSubmit={handleSubmit}>
+
+            <form className='resForm' onSubmit={handleSubmit}>
                 <label htmlFor="first_name">
                     First Name:
                     <input
@@ -54,6 +57,7 @@ export default function NewReservation ({date}) {
                         onChange={handleChange}
                         value={formData.first_name} />
                 </label>
+                <br/>
                 <label htmlFor="last_name">
                     Last Name:
                     <input
@@ -63,6 +67,7 @@ export default function NewReservation ({date}) {
                         onChange={handleChange}
                         value={formData.last_name} />
                 </label>
+                <br/>
                 <label htmlFor="mobile_number">
                     Mobile Number:
                     <input
@@ -72,6 +77,7 @@ export default function NewReservation ({date}) {
                         onChange={handleChange}
                         value={formData.mobile_number} />
                 </label>
+                <br/>
                 <label htmlFor="reservation_date">
                     Reservation Date:
                     <input
@@ -81,6 +87,7 @@ export default function NewReservation ({date}) {
                         onChange={handleChange}
                         value={formData.reservation_date} />
                 </label>
+                <br/>
                 <label htmlFor="reservation_time">
                     Reservation Time:
                     <input
@@ -90,6 +97,7 @@ export default function NewReservation ({date}) {
                         onChange={handleChange}
                         value={formData.reservation_time} />
                 </label>
+                <br/>
                 <label htmlFor="people">
                     Total Guests:
                     <input
@@ -99,8 +107,9 @@ export default function NewReservation ({date}) {
                         onChange={handleChange}
                         value={formData.people} />
                 </label>
-                <button type="submit">Submit</button>
-                <button type="cancel" onClick={()=>history.goBack()}>Cancel</button>
+                <br/>
+                <button className='btnP' type="submit">Submit</button>
+                <button className='btnPD' type="cancel" onClick={()=>history.goBack()}>Cancel</button>
             </form>
            
         </div>

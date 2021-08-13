@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
-import { useHistory } from "react-router"
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import ErrorAlert from "../layout/ErrorAlert";
 import Reservation from "../Reservations/Reservation"
 import Tables from "../Tables/Tables"
@@ -38,25 +39,45 @@ function Dashboard() {
     return () => abortController.abort();
   }
 
+  function ReservationList({reservations}){
+    if(!reservations.length){
+      return(
+        <div className='reservationsCont'> <p className='noReservations'>There are no reservations for the selected day.</p></div>
+      )
+    }
+    return (
+      <div className='reservationsCont'>
+      {reservations.map((res)=> <Reservation key={res.reservation_id} res={res} loadDashboard={loadDashboard} setReservationError={setReservationsError}/>)}
+      </div>
+    )
+  }
+
   
   return (
-    <main>
-      <div className="d-md-flex mb-3">
-        <h4 className="mb-0">Reservations for {date} </h4>
+    <main className="main">
+      <h1>Dashboard</h1>
+      <hr/>
+      <div className="dateToggle">
+        <button className="datebtn" 
+        onClick={()=> history.push(`/dashboard?date=${previous(date)}`)}>
+          <span className="icon" >arrow_back</span>
+        </button>
+        <button className="datebtnToday"
+        onClick={()=> history.push(`/dashboard?date=${today()}`)}>Today</button>
+        <button className="datebtn"
+        onClick={()=> history.push(`/dashboard?date=${next(date)}`)}>
+          <span className="icon" >arrow_forward</span>
+          </button>
+      </div>
+      <div>
+        <h2>Reservations for {date} </h2>
       </div>
 
-      <div>
-        <button className="btn btn-info m-1 p-3"
-        onClick={()=> history.push(`/dashboard?date=${previous(date)}`)}>Previous Date</button>
-        <button className="btn btn-info m-1 p-3"
-        onClick={()=> history.push(`/dashboard?date=${today()}`)}>Today</button>
-        <button className="btn btn-info m-1 p-3"
-        onClick={()=> history.push(`/dashboard?date=${next(date)}`)}>Next Date</button>
-      </div>
       <ErrorAlert error={reservationsError} />
-      <div>
-        {reservations.map((res)=> <Reservation key={res.reservation_id} res={res} loadDashboard={loadDashboard} setReservationError={setReservationsError}/>)}
-      </div>
+      
+      <ReservationList reservations={reservations}/>
+
+
       <Tables loadDashboard={loadDashboard} tables={tables} tablesError = {tablesError} />
     </main>
   );

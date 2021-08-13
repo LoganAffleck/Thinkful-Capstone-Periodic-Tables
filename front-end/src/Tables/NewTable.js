@@ -33,11 +33,11 @@ export default function NewTable () {
 
     return (
         <div>
-            <h1>New Table Form</h1>
+            <h1>New Table:</h1>
             <ErrorAlert error={tableError} />
             <form onSubmit={handleSubmit}>
                 <label htmlFor="table_name">
-                    Enter the Table's Name:
+                    Table Name:
                     <input
                         id="table_name"
                         type="text"
@@ -46,8 +46,9 @@ export default function NewTable () {
                         value={formData.table_name} 
                         required />
                 </label>
+                <br/>
                 <label htmlFor="capacity">
-                    Enter Table's Capacity:
+                    Capacity:
                     <input
                         id="capacity"
                         type="number"
@@ -56,9 +57,11 @@ export default function NewTable () {
                         value={formData.capacity} 
                         required />
                 </label>
-                <button type="submit">Submit</button>
+                <br/>
+                <button className='btnP' type="submit">Submit</button>
+                <button className='btnPD' type="cancel" onClick={()=>history.goBack()}>Cancel</button>
             </form>
-            <button type="cancel" onClick={()=>history.goBack()}>Cancel</button>
+            
         </div>
     )
 }

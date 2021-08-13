@@ -24,28 +24,53 @@ export default function Reservation ({res, loadDashboard, setReservationError}) 
         return () => abortController.abort();
     }
     
+    function formatPhoneNumber(phoneNumberString) {
+      var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+      var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
+      if (match) {
+        var intlCode = (match[1] ? '+1 ' : '');
+        return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('');
+      }
+      return null;
+    }
+    
     
     return (
-        <div>
-          <div>
-            <h4>{res.first_name},{res.last_name} Party of: {res.people}</h4>
-            <div>Date: {res.reservation_date}, Time: {res.reservation_time}</div>
-            <div data-reservation-id-status={res.reservation_id}>{res.status}</div>
-            <p>{res.mobile_number}</p>
-            <p>{res.reservation_time}</p>
-            <div>{res.status !=="seated" ? <Link to={`/reservations/${res.reservation_id}/seat`}>Seat</Link> : ""}
-            <Link to={`/reservations/${res.reservation_id}/edit`} className="btn btn-light m-2">
-                        Edit
-                        </Link>
-                        <button
-                        className="btn btn-danger"
-                        data-reservation-id-cancel={res.reservation_id}
-                        onClick={handleCancel}
-                        >
-                        Cancel
-                        </button>
-                        </div>
-          </div>            
-        </div>
+        <>
+          <div className="reservation">
+            <div className="split">
+            <div className="resName">{res.first_name} {res.last_name} </div>
+            <div className="resSub">{formatPhoneNumber(res.mobile_number)}</div>
+            <div className="resSub">Party of {res.people}</div>
+            <div className="resSub">Date: {res.reservation_date}</div>
+            <div className="resSub">Time: {res.reservation_time}</div>
+            <br/>
+            </div>
+            <div className="split">  
+            <div className="resSub" data-reservation-id-status={res.reservation_id}>{res.status}</div>
+            
+                  
+                <div>{res.status !=="seated" ? 
+                <Link to={`/reservations/${res.reservation_id}/seat`}
+                className='button'>
+                Seat 
+                </Link> : ""}
+                <br/>
+                <Link to={`/reservations/${res.reservation_id}/edit`} 
+                className="button">
+                Edit
+                </Link>
+                <br/>
+                <button
+                className="btn btn-danger"
+                data-reservation-id-cancel={res.reservation_id}
+                onClick={handleCancel}>
+                <span className="danger">Cancel</span>
+                </button>
+               </div>
+             </div>  
+          </div>
+           
+        </>
     )
 }

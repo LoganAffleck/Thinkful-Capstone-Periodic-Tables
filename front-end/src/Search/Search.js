@@ -22,26 +22,26 @@ export default function Search() {
   return (
     <div>
       <ErrorAlert error={error} />
-      <h2 className="mt-3 ml-3">Search</h2>
+      <h1>Search</h1>
       <form name="reservation" onSubmit={handleSearch}>
         <input
-          className="ml-3"
+          className="inputSearch"
           type="text"
           name="mobile_number"
           placeholder="Enter customer's phone number"
           onChange={handleChange}
           value={mobileNumber}
         ></input>
-        <button type="submit" className="btn btn-info">
+        <button type="submit" className="btnP">
           Find
         </button>
       </form>
       {list.length ? (
-        <div>
+        <div className="searchResults">
           {list.map(res => <Reservation res={res} />)}
         </div>
       ) : (
-        <div>No reservations found</div>
+        <div className="searchResults">No reservations found</div>
       )}
     </div>
   );

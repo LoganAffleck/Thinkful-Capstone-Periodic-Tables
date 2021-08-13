@@ -18,10 +18,10 @@ a {
     text-decoration: none;
 }
 
-nav {
+.title {
     display: flex;
     flex-direction: row;
-    width: 100vw;
+    width: 100%;
     padding-bottom: 10px;
     position: fixed;
     top: 0px;
@@ -30,12 +30,32 @@ nav {
 
     border-bottom-style: solid;
     border-width: 1.5px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
     border-color: black;
 
     box-shadow: 0px 0px 100px rgba(0,0,0,0.15);
     
+}
+
+.heroPhoto {
+    height: 200px;
+    width: 100%;
+    background: url("../resources/pt.jpg") rgba(0, 0, 0, 0.075);
+    background-size: cover;
+    
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 40px;
+    margin: 0px;
+}
+
+h2{
+    margin: 0;
+}
+
+.resForm{
+    margin-bottom: 40px;
 }
 
 .icon{
@@ -47,13 +67,13 @@ nav {
 .logoNav {
     width: 100vw;
     display: flex;
-    padding: 10px;
+    padding-top: 10px;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     color: black;
     font-size: 20px;
-    margin-bottom: 10px;
+    
 }
 
 .logo {
@@ -61,35 +81,190 @@ nav {
     margin-right: 20px;
 }
 
-.options {
-    width: 100vw;
+nav {
+    width: 100%;
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.button{
+  color: black;
+  padding: 1px;
+  font-size: 9px;
 }
 
 .navButton{
     color: black;
-    font-size: 1vw;
-    padding: 3px;
+    font-size: 10px;
+    padding: 5px;
     margin: 3px;
     display: flex;
     align-items: center;
-
-    border-style: solid;
-    border-width: 1.5px;
-    border-radius: 5px;
-    border-color: black;
-
-    box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
-    transition-property: box-shadow;
-    transition: .3s;
-}
-
-.navButton:hover{
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
 }
 
 .websiteContent{
-    margin-top: 125px;
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+}
+
+.navLinks{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 10px;
+}
+
+.main{
+    width: 80%;
+}
+
+.dateToggle{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.datebtn{
+   background-color: transparent;
+   padding-right: 2px;
+   width: 30px;
+   height: 30px;
+   border-style: solid;
+   cursor: pointer;
+   border-radius: 900px;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
+}
+
+.datebtnToday{
+    border-style: none;
+    background-color: rgba(0,0,0,0.02);
+    cursor: pointer;
+}
+
+.noReservations{
+    font-size: 1vw;
+    color:rgba(0, 0, 0, 0.4)
+}
+
+.reservationsCont{
+    
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    padding: 20px;
+    min-height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: .5px;
+    border-color: rgba(0, 0, 0, 0.4);
+    background-color: white;
+}
+
+.reservation{
+    width: 100%;
+    background-color: white;
+    text-transform: capitalize;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;;
+}
+
+.resName {
+    font-size: 16px;
+    
+}
+
+.resSub{
+    font-size: 12px;
+    text-transform: uppercase;
+    color:rgba(0, 0, 0, 0.6)
+}
+
+.btn{
+    background-color: white;
+    border-style: none;
+    margin-top: 5px;
+}
+
+.btnP{
+    background-color: white;
+    border-style: solid;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.btnPD{
+    margin-left: 10px;
+    background-color: white;
+    border-style: solid;
+    color: #e67f77;
+    border-color: #e67f77;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.danger{
+    text-transform: uppercase;
+    color: #e67f77;
+    cursor: pointer;
+    margin: -6px;
+    padding: 3px;
+    border-style: solid;
+    border-color: #e67f77;
+    font-size: 9px;
+
+}
+
+.tablesCont{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    padding: 20px;
+    min-height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: .5px;
+    border-color: rgba(0, 0, 0, 0.4);
+    background-color: white;
+}
+
+.table{
+    width: 48%;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.192);
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+
+}
+
+.inputSearch{
+    width: 100%;
+}
+
+.searchResults{
+    margin-top: 25px;
 }

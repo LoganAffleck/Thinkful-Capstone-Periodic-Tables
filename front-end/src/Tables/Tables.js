@@ -24,11 +24,14 @@ export default function Tables({loadDashboard, tables, tablesError}) {
   return (
     <main>
       <ErrorAlert error={tablesError} />
-      <h1>Tables</h1>
+      <h2>Tables</h2>
       <div>
-        <button onClick={()=>history.push("/tables/new")}>New Table</button>
+        <button className='btnP' onClick={()=>history.push("/tables/new")}>
+        <span className ='icon'>event_seat</span>
+          New Table
+          </button>
       </div>
-      <div>
+      <div className='tablesCont'>
         {tables.map((table)=> <Table key={table.table_id} table={table} clearTable={clearTable}/>)}
       </div>
     </main>

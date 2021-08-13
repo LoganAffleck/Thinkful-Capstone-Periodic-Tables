@@ -1,6 +1,6 @@
 import React from "react";
 import logo from '../resources/pt_logo.svg';
-
+import pt from '../resources/pt.jpg';
 import { Link } from "react-router-dom";
 
 /**
@@ -11,7 +11,8 @@ import { Link } from "react-router-dom";
 
 function Menu() {
   return (
-    <nav>
+    <>
+    <div className='title'>
       <div>
         <Link to="/" >
           <div className ='logoNav'>
@@ -19,9 +20,13 @@ function Menu() {
             <span>Periodic Tables</span>
           </div>
         </Link>
+        </div>
+      </div>
+        
+        <div className='heroPhoto'></div>
 
-        <div className='options'>
-          
+        <nav>
+          <div className='navLinks'>
             <Link to="/dashboard">
               <div className = 'navButton'>
               <span className ='icon'>done</span>
@@ -52,11 +57,11 @@ function Menu() {
               New Table
             </div>
             </Link>
-          
-        </div>
+            </div>
+        </nav>
 
-      </div>
-    </nav>
+      </>
+
   );
 }
 
