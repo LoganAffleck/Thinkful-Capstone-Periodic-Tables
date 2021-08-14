@@ -1,5 +1,0 @@
-cd ~/Desktop/Thinkful-Capstone-Periodic-Tables
-npm run start:backend
-
-cd ~/Desktop/Thinkful-Capstone-Periodic-Tables
-npm run start:frontend
