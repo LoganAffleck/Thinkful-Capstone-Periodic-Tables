@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom"
 import ErrorAlert  from "../layout/ErrorAlert";
 import {createReservation} from "../utils/api";
-
+import ReservationForm from './ReservationForm'
 
 
 export default function NewReservation ({date}) {
@@ -46,71 +46,7 @@ export default function NewReservation ({date}) {
             <h1>New Reservation:</h1>
 
             <ErrorAlert error={reservationsError} />
-
-            <form className='resForm' onSubmit={handleSubmit}>
-                <label htmlFor="first_name">
-                    First Name:
-                    <input
-                        id="first_name"
-                        type="text"
-                        name="first_name"
-                        onChange={handleChange}
-                        value={formData.first_name} />
-                </label>
-                <br/>
-                <label htmlFor="last_name">
-                    Last Name:
-                    <input
-                        id="last_name"
-                        type="text"
-                        name="last_name"
-                        onChange={handleChange}
-                        value={formData.last_name} />
-                </label>
-                <br/>
-                <label htmlFor="mobile_number">
-                    Mobile Number:
-                    <input
-                        id="mobile_number"
-                        type="tel"
-                        name="mobile_number"
-                        onChange={handleChange}
-                        value={formData.mobile_number} />
-                </label>
-                <br/>
-                <label htmlFor="reservation_date">
-                    Reservation Date:
-                    <input
-                        id="reservation_date"
-                        type="date"
-                        name="reservation_date"
-                        onChange={handleChange}
-                        value={formData.reservation_date} />
-                </label>
-                <br/>
-                <label htmlFor="reservation_time">
-                    Reservation Time:
-                    <input
-                        id="reservation_time"
-                        type="time"
-                        name="reservation_time"
-                        onChange={handleChange}
-                        value={formData.reservation_time} />
-                </label>
-                <br/>
-                <label htmlFor="people">
-                    Total Guests:
-                    <input
-                        id="people"
-                        type="number"
-                        name="people"
-                        onChange={handleChange}
-                        value={formData.people} />
-                </label>
-                <br/>
-                <button className='btnP' type="submit">Submit</button>
-                <button className='btnPD' type="cancel" onClick={()=>history.goBack()}>Cancel</button>
-            </form>
+            <ReservationForm formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
            
         </div>
     )

@@ -90,6 +90,21 @@ nav {
     margin-bottom: 10px;
 }
 
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+label{
+    margin-bottom: 2px;
+}
+
+input {
+    margin-bottom: 10px;
+    max-width: 350px;
+}
+
 .button{
   color: black;
   padding: 1px;
@@ -267,4 +282,33 @@ nav {
 
 .searchResults{
     margin-top: 25px;
+}
+
+.alert{
+    font-size: 9px;
+    color: red;
+    background-color: rgba(255, 0, 0, 0.15);
+    border-style: solid;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+.RFbtn {
+    background-color: white;
+    padding: 10px;
+    max-width: 100px;
+    cursor: pointer;
+}
+
+.RFbtnD {
+    margin-top: 10px;
+    color:rgba(255, 0, 0, 0.15);
+    background-color: white;
+    padding: 5px;
+    max-width: 100px;
+    color: #e67f77;
+    border-color: #e67f77;
+    cursor: pointer;
 }
