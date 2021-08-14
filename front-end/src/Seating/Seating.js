@@ -57,10 +57,10 @@ export default function Seating () {
                         <option key={0} value={0}>
                     --- Please select an option ---
                         </option> 
-                        {tables.map((table, index) => {
+                        {tables.map((table) => {
                             console.log(`${table.table_name} - ${table.capacity}`);
                             return (
-                            <option key={index} value={table.table_id}>{table.table_name} - {table.capacity}</option>);
+                            <option key={table.table_name} value={table.table_id}>{table.table_name} - {table.capacity}</option>);
                         })}
                         </select>
                     </div>
